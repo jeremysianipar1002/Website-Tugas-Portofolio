@@ -1,0 +1,143 @@
+:root {
+  --accent: #e00d0d;
+  --text: #010c86;
+  --muted: #00700f;
+  --maxw: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  color: var(--text);
+  line-height: 1.5;
+  background: linear-gradient(135deg, #f8fbff, #f1f7ff);
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* HEADER */
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.main-nav ul { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.main-nav a { text-decoration: none; color: var(--text); transition: color 0.15s; }
+.main-nav a:hover { color: var(--accent); }
+
+/* ABOUT */
+.about { padding: 4rem 1rem; background: #fff; }
+.about-container {
+  display: flex; align-items: center; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.about-photo {
+  width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.about-text { flex: 1; min-width: 250px; }
+.about-text h2 { font-size: 2rem; color: var(--accent); }
+.about-text p { color: var(--muted); margin-bottom: 1rem; }
+
+/* SKILLS */
+.skills { padding: 3rem 1rem; background: #fefefe; text-align: center; }
+.skills h2 { margin-bottom: 2rem; font-size: 2rem; color: var(--accent); }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem; max-width: var(--maxw); margin: 0 auto;
+}
+.skill-card {
+  background: #f9f9ff; border-radius: 12px; padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.skill-card:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.skill-card h3 { margin: 0 0 0.5rem; color: var(--text); }
+.skill-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+
+/* Progress bar */
+.skill-bar {
+  background: #e6e6e6; border-radius: 8px; overflow: hidden;
+  height: 12px; margin: 0.5rem 0 1rem;
+}
+.skill-progress {
+  background: var(--accent); height: 100%; border-radius: 8px;
+  transition: width 1s ease;
+}
+
+/* PROJECTS */
+.projects {
+  padding: 3rem 1rem; text-align: center;
+  background: linear-gradient(180deg, #ffffff, #f3f6ff);
+}
+.projects h2 { margin-bottom: 2rem; font-size: 2rem; color: var(--accent); }
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.project-card {
+  background: #fff; border-radius: 12px; padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(20px); opacity: 0;
+  animation: slideUp 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.project-card img { width: 100%; border-radius: 8px; margin-bottom: 1rem; }
+
+/* BUTTON */
+.btn {
+  background-color: var(--accent); color: white; padding: 0.6rem 1rem;
+  border-radius: 8px; text-decoration: none; font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn:hover { background-color: #094db5; transform: scale(1.05); }
+
+/* ANIMATIONS */
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .main-nav ul { display: none; }
+}
+
+/* Tombol hamburger (mobile) */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Saat layar kecil, tampilkan hamburger */
+@media (max-width: 600px) {
+  .menu-toggle { display: block; }
+  .main-nav ul {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    padding: 1rem;
+    position: absolute;
+    top: 60px; right: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+  }
+  .main-nav ul.show { display: flex; }
+}
